@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "mood-tracker"
+version = "0.1.0"
+description = "A personal mood tracker"
+authors = ["Brendan Tobolaski <brendan@tobolaski.com>"]
+readme = "README.md"
+packages = [{include = "mood_tracker"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
