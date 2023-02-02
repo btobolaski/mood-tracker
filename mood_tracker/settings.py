@@ -28,8 +28,10 @@ SECRET_KEY = "django-insecure-plgw_!sbr&ib3!ax0ke9+uk#_4=j3^m*)ga16m&jw$*a+(7ir0
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if ENVIRONMENT == "production":
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["mood-tracker.net.tobolaski.com", "localhost"]
 
 
 # Application definition
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -139,3 +142,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+STATIC_ROOT = BASE_DIR / "staticfiles" / "static"

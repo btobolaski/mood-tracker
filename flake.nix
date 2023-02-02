@@ -18,7 +18,7 @@
         pkgs = import nixpkgs {
           inherit system;
         };
-        inherit (poetry2nix.legacyPackages.${system}) mkPoetryEnv;
+        inherit (poetry2nix.legacyPackages.${system}) mkPoetryEnv mkPoetryApplication;
         python = pkgs.python310;
         pythonEnv = mkPoetryEnv {
           inherit python;
@@ -29,7 +29,23 @@
           pythonEnv
           pkgs.poetry
           pkgs.black
+          pkgs.gnumake
         ];
+        package = mkPoetryApplication {
+          inherit python;
+          projectDir = ./.;
+          preferWheels = true;
+        };
+        docker = pkgs.dockerTools.buildLayeredImage {
+          name = "docker.tobolaski.com/brendan/mood-tracker";
+          maxLayers = 120;
+          config = {
+            User = "1000:1000";
+            ExposedPorts = { "8000/tcp" = {}; };
+            Env = [ "STATIC_ROOT=${./staticfiles}" ];
+            Cmd = ["${package.dependencyEnv}/bin/python" "${./server.py}"];
+          };
+        };
       in
       {
         devShells ={
@@ -41,5 +57,10 @@
             '';
           };
         };
+        packages = {
+          application = package;
+          docker = docker;
+        };
+        defaultPackage = docker;
       }; in with utils.lib; eachSystem defaultSystems out;
 }
