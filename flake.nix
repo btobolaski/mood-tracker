@@ -36,6 +36,8 @@
           default = pkgs.mkShell {
             buildInputs = commonPackages;
             shellHook = ''
+              rm -f python
+              ln -s ${pythonEnv} python
             '';
           };
         };
