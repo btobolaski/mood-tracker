@@ -30,6 +30,7 @@
           pkgs.poetry
           pkgs.black
           pkgs.gnumake
+          pkgs.git-crypt
         ];
         package = mkPoetryApplication {
           inherit python;
