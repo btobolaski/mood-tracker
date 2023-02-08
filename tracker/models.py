@@ -99,5 +99,4 @@ class Record(models.Model):
     overall_mood = models.PositiveSmallIntegerField(
         choices=OVERALL_MOOD_OPTIONS,
         validators=overall_mood_validators,
-        null=True,
     )
