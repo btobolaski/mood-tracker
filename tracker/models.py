@@ -87,6 +87,9 @@ class Record(models.Model):
     motivation_level = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators
     )
+    concentration_level = models.PositiveSmallIntegerField(
+        choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators, default=LITTLE,
+    )
     energy_level = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators
     )
