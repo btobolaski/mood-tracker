@@ -84,6 +84,11 @@ class Record(models.Model):
     stress_level = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators
     )
+    sex_drive = models.PositiveSmallIntegerField(
+        choices=QUALITATIVE_QUANTIFIERS,
+        validators=qualitative_quantifier_validators,
+        default=SKIPPED,
+    )
     motivation_level = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators
     )
