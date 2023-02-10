@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A personal mood tracker"
 authors = ["Brendan Tobolaski <brendan@tobolaski.com>"]
 readme = "README.md"
-packages = [{include = "mood_tracker"}, {include = "tracker"}]
+packages = [{include = "mood_tracker"}, {include = "tracker"}, {include = "my_auth"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

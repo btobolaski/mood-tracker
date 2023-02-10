@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ["mood-tracker.net.tobolaski.com", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
+    "my_auth.apps.AuthConfig",
     "tracker.apps.TrackerConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -58,6 +59,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "mood_tracker.urls"
+
+AUTH_USER_MODEL = "my_auth.User"
 
 TEMPLATES = [
     {
