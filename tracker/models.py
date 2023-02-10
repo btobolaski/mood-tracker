@@ -104,6 +104,11 @@ class Record(models.Model):
     illness_level = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators
     )
+    irritability = models.PositiveSmallIntegerField(
+        choices=QUALITATIVE_QUANTIFIERS,
+        validators=qualitative_quantifier_validators,
+        default=SKIPPED,
+    )
     overall_mood = models.PositiveSmallIntegerField(
         choices=OVERALL_MOOD_OPTIONS,
         validators=overall_mood_validators,
