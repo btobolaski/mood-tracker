@@ -15,4 +15,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mood_tracker.settings")
 
 from whitenoise import WhiteNoise
 
-application = WhiteNoise(get_wsgi_application(), root=os.environ["STATIC_ROOT"])
+application = None
+if os.environ.get("STATIC_ROOT") is not None:
+    application = WhiteNoise(get_wsgi_application(), root=os.environ["STATIC_ROOT"])
+else:
+    application = get_wsgi_application()
