@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
@@ -50,6 +51,7 @@ class Record(models.Model):
     overall_mood_validators = [MaxValueValidator(8), MinValueValidator(0)]
     eating_validators = [MaxValueValidator(GREAT), MinValueValidator(SKIPPED)]
 
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     date = models.DateField(default=timezone.now)
     location = models.TextField(help_text="Where did you stay for the day.")
     sex = models.BooleanField()
