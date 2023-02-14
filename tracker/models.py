@@ -113,3 +113,6 @@ class Record(models.Model):
         choices=OVERALL_MOOD_OPTIONS,
         validators=overall_mood_validators,
     )
+
+    class Meta:
+        ordering = ["-date"]
