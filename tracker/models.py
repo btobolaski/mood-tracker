@@ -17,6 +17,13 @@ class Record(models.Model):
         (EXCESS, "An excessive amount"),
     ]
 
+    EATING_QUANTIFIERS = [
+        (SKIPPED, "None"),
+        (LITTLE, "Light"),
+        (MODERATE, "Normal"),
+        (GREAT, "Excessive"),
+    ]
+
     VERY_DEPRESSED = 0
     DEPRESSED = 1
     MILDLY_DEPRESSED = 2
@@ -41,6 +48,7 @@ class Record(models.Model):
     hours_validators = [MaxValueValidator(24), MinValueValidator(0)]
     qualitative_quantifier_validators = [MaxValueValidator(4), MinValueValidator(0)]
     overall_mood_validators = [MaxValueValidator(8), MinValueValidator(0)]
+    eating_validators = [MaxValueValidator(GREAT), MinValueValidator(SKIPPED)]
 
     date = models.DateField(default=timezone.now)
     location = models.TextField(help_text="Where did you stay for the day.")
@@ -78,6 +86,9 @@ class Record(models.Model):
     )
     exercise_minutes = models.PositiveSmallIntegerField(default=0)
     calories_burned = models.PositiveSmallIntegerField(default=0)
+    eating = models.PositiveSmallIntegerField(
+        choices=EATING_QUANTIFIERS, validators=eating_validators, default=MODERATE
+    )
     sweets_eaten = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators
     )
