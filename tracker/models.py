@@ -96,7 +96,9 @@ class Record(models.Model):
     stress_level = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators
     )
-    stress_score = models.FloatField("stress score", null=True, default=None)
+    stress_score = models.FloatField(
+        "stress score", blank=True, null=True, default=None
+    )
     sex_drive = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS,
         validators=qualitative_quantifier_validators,
