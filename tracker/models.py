@@ -70,6 +70,7 @@ class Record(models.Model):
         default=0,
         validators=hours_validators,
     )
+    overnight_parenting = models.BooleanField("parenting overnight", default=True)
     personal_hours = models.DecimalField(
         "hours of personal time",
         max_digits=3,
@@ -95,6 +96,7 @@ class Record(models.Model):
     stress_level = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS, validators=qualitative_quantifier_validators
     )
+    stress_score = models.FloatField("stress score", null=True, default=None)
     sex_drive = models.PositiveSmallIntegerField(
         choices=QUALITATIVE_QUANTIFIERS,
         validators=qualitative_quantifier_validators,
