@@ -38,7 +38,7 @@
           preferWheels = true;
         };
         docker = pkgs.dockerTools.buildLayeredImage {
-          name = "docker.tobolaski.com/brendan/mood-tracker";
+          name = "docker.net.tobolaski.com/r/mood-tracker";
           maxLayers = 120;
           config = {
             User = "1000:1000";
