@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Record
+from .models import Tag
 
 
 class RecordAdmin(admin.ModelAdmin):
@@ -10,3 +11,4 @@ class RecordAdmin(admin.ModelAdmin):
 # Register your models here.
 
 admin.site.register(Record, RecordAdmin)
+admin.site.register(Tag)
