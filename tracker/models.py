@@ -6,6 +6,38 @@ from django.utils import timezone
 # Create your models here.
 
 
+class Medication(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["owner", "name"], name="medication_owner_name_unique"
+            )
+        ]
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.TextField("Medication Name")
+
+    def __str__(self):
+        return self.name
+
+
+class MedicationDosage(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["owner", "medication", "dosage"],
+                name="medication_dosage_owner_medication_dosage_unique",
+            )
+        ]
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    medication = models.ForeignKey(Medication, on_delete=models.CASCADE, null=False)
+    dosage = models.TextField("Dosage")
+
+    def __str__(self):
+        return f"{self.medication.name} - {self.dosage}"
+
+
 class Tag(models.Model):
     class Meta:
         constraints = [
@@ -151,6 +183,7 @@ class Record(models.Model):
     )
 
     tags = models.ManyToManyField(Tag)
+    medications_taken = models.ManyToManyField(MedicationDosage)
 
     class Meta:
         ordering = ["-date"]

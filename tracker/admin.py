@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import Record
-from .models import Tag
+from .models import Record, Tag, Medication, MedicationDosage
 
 
 class RecordAdmin(admin.ModelAdmin):
@@ -12,3 +11,5 @@ class RecordAdmin(admin.ModelAdmin):
 
 admin.site.register(Record, RecordAdmin)
 admin.site.register(Tag)
+admin.site.register(Medication)
+admin.site.register(MedicationDosage)

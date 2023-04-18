@@ -10,6 +10,7 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("tracker", "0009_record_owner"),
+        ("tracker", "0009_record_overnight_parenting_record_stress_score"),
     ]
 
     operations = [
